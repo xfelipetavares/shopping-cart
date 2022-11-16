@@ -905,7 +905,7 @@ Ao clicar no botão `Adicionar ao carrinho`:
 
 - Com os dados do produtos retornados, você deve adicionar o produto ao carrinho de compras, utilize a função `createCartProductElement` (que se encontra no arquivo `shopFunction.js`) para criar os componentes _HTML_ referentes a um produto do carrinho;
 
-- Adicione o elemento retornado da função `createCartElement(product)` como filho do elemento `<ol class="cart__products">`.
+- Adicione o elemento retornado da função `createCartProductElement(product)` como filho do elemento `<ol class="cart__products">`.
 
 > **De olho na dica:** A função `createProductElement()` é a responsável por criar o botão, talvez seja um local interessante para adicionar o evento de click 👀.
 
