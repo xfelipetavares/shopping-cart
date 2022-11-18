@@ -5,23 +5,34 @@ import { fetchProductsList } from './helpers/fetchFunctions';
 
 const products = document.querySelector('.products');
 
-export const showLoadingScreen = (item) => {
+const showLoadingScreen = (item) => {
   const loadingScreen = document.createElement('p');
   loadingScreen.classList.add('loading');
   loadingScreen.innerText = 'carregando...';
   item.appendChild(loadingScreen);
 };
-export const removeLoadingScreen = (item) => {
+const showErrorScreen = (item) => {
+  const errorScreen = document.createElement('p');
+  errorScreen.classList.add('error');
+  errorScreen.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
+  item.appendChild(errorScreen);
+};
+const removeLoadingScreen = (item) => {
   item.innerHTML = '';
 };
 
 async function showProducts() {
   showLoadingScreen(products);
-  const product = await fetchProductsList('computador');
-  removeLoadingScreen(products);
-  product.forEach((element) => {
-    products.appendChild(createProductElement(element));
-  });
+  try {
+    const product = await fetchProductsList('computador');
+    removeLoadingScreen(products);
+    product
+      .forEach((element) => {
+        products.appendChild(createProductElement(element));
+      });
+  } catch {
+    showErrorScreen(products);
+  }
 }
 showProducts();
 
