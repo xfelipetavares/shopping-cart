@@ -12,13 +12,17 @@ describe('Teste a função fetchProductsList', () => {
     expect(fetchProductsList('computador')).toBeInstanceOf(Promise)
   });
   
-  // it('fetch é chamado com o endpoint correto ao executar fetchProductsList', () => {
-  //   expect(() => fetchProductsList()).toThrowError('Termo de busca não informado')
-  // });
+  it('fetch é chamado com o endpoint correto ao executar fetchProductsList', async () => {
+    const teste = await fetchProductsList('computador')
+    const result = teste[33].category_id
+    expect(result).toBe("MLB1649")
+  });
   
-  // it('fetchProductsList chamada sem argumentos ela retorna uma frase de erro', () => {
-  //   expect(() => fetchProductsList()).toThrowError('Termo de busca não informado')
-  // });
-  // it('...', () => {
-  // });
+  it('fetch é chamado ao executar fetchProductsList', async () => {
+    expect(await fetchProductsList('computador')).toEqual(computadorSearch)
+  });
+  
+  it('fetchProductsList chamada sem argumentos ela retorna uma frase de erro', () => {
+    expect(() => fetchProductsList()).rejects.toThrowError('Termo de busca não informado')
+  });
 });

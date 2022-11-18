@@ -2,8 +2,8 @@ import { searchCep } from './helpers/cepFunctions';
 import './style.css';
 import { fetchProductsList } from './helpers/fetchFunctions';
 
-const teste = fetchProductsList('computador')
+// const teste = fetchProductsList()
 
-console.log(teste);
+// console.log(teste);
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
