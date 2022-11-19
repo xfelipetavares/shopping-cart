@@ -2,7 +2,7 @@ import { searchCep } from './helpers/cepFunctions';
 import './style.css';
 import { createCartProductElement, createProductElement } from './helpers/shopFunctions';
 import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
-import { saveCartID } from './helpers/cartFunctions';
+import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
 
 const products = document.querySelector('.products');
 
@@ -51,3 +51,13 @@ addProduct.addEventListener('click', async () => {
     cartProducts.appendChild(createCartProductElement(await fetchProduct(productID)));
   }
 });
+
+function addProductCart() {
+  const arrayProducts = getSavedCartIDs().map((productID) => fetchProduct(productID));
+
+  Promise.all(arrayProducts)
+    .then((response) => response.forEach((element) => {
+      cartProducts.appendChild(createCartProductElement(element));
+    }));
+}
+addProductCart();
