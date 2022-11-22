@@ -5,6 +5,19 @@ import { removeCartID } from './cartFunctions';
 
 // Fique a vontade para modificar o código já escrito e criar suas próprias funções!
 
+// algoritimo abaixo criado por mim para fazer a soma e subtracao do valor
+const sumProduct = document.querySelector('.total-price');
+let value = 0;
+
+function sumProductsValue(price) {
+  value += price;
+  sumProduct.innerText = value;
+}
+function subProductsValue(price) {
+  value -= price;
+  sumProduct.innerText = value;
+}
+
 /**
  * Função responsável por criar e retornar o elemento de imagem do produto.
  * @param {string} imageSource - URL da imagem.
@@ -45,9 +58,10 @@ export const getIdFromProduct = (product) => (
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
  * @param {string} id - ID do produto a ser removido do carrinho.
  */
-const removeCartProduct = (li, id) => {
+const removeCartProduct = (li, id, price) => {
   li.remove();
   removeCartID(id);
+  subProductsValue(price); // modificado por mim
 };
 
 /**
@@ -59,7 +73,9 @@ const removeCartProduct = (li, id) => {
  * @param {string} product.pictures - Imagens do produto.
  * @returns {Element} Elemento de um product do carrinho.
  */
+
 export const createCartProductElement = ({ id, title, price, pictures }) => {
+  sumProductsValue(price);
   const li = document.createElement('li');
   li.className = 'cart__product';
   const imgContainer = createCustomElement('div', 'cart__product__image-container');
@@ -87,7 +103,7 @@ export const createCartProductElement = ({ id, title, price, pictures }) => {
   );
   li.appendChild(removeButton);
 
-  li.addEventListener('click', () => removeCartProduct(li, id));
+  li.addEventListener('click', () => removeCartProduct(li, id, price)); // modificado por mim
   return li;
 };
 
