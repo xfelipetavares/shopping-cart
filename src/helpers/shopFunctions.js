@@ -11,11 +11,11 @@ let value = 0;
 
 function sumProductsValue(price) {
   value += price;
-  sumProduct.innerText = value;
+  sumProduct.innerText = value.toFixed(2);
 }
 function subProductsValue(price) {
   value -= price;
-  sumProduct.innerText = value;
+  sumProduct.innerText = value.toFixed(2);
 }
 
 /**
